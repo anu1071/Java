@@ -1,0 +1,29 @@
+import java.util.*;
+/*this program takes a number from the user , counts it's digits , tells us
+the first and last digit of the number*/
+
+public class Exp {
+public static void main(String[]args)
+{
+int num,num1,i,count=0,last;
+Scanner ob = new Scanner(System.in);
+num=ob.nextInt();
+while(num>0)
+{
+	last=num%10;
+	num=num/10;
+    count=count+1;
+    if(count==1)
+    {
+    System.out.print("\nThe last digit of the number is \t"+last);
+    }
+    if(num<100 && num>=10)//this condition ensures that this loop does not execute again 
+    {
+        num1=num;
+    	num1=num1/10;
+    	System.out.print("\nThe first digit of the number is \t"+num1);
+    }
+}
+System.out.println("\nThe number of digits in the number is\t"+count);
+}
+}
