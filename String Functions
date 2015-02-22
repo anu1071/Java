@@ -1,0 +1,31 @@
+import java.util.*;
+
+//String functions
+public class StrFunctions 
+{
+public static void main(String[]args)
+{
+Scanner ob = new Scanner(System.in);
+String st,st1,st2,st3;
+System.out.print("enter a string\n");
+st=ob.nextLine();
+System.out.print("You have entered\n"+st);
+System.out.print("\nThe letter at the third postion of\t"+st+"\t \t is\t"+st.charAt(2));//letter position
+if(st.equalsIgnoreCase("anubhav")==true)//string equal check
+{
+	System.out.print("\nThe entered string is equal to anubhav\n");
+}
+else
+{
+System.out.print("\nThe entered string is not equal to anubhav\n");
+}
+System.out.print("length of the string\t"+st+"\tis\t"+st.length());//string length
+st1="Run";
+System.out.print("\nAfter replacing 'n' in Run by 'nning' it becomes\t"+(st1.replace("n","nning")));//replace letters
+st2="astronaut";
+System.out.print("\nAfter putting starting point 2 and ending point 6 in astronaut respectively..the string becomes\n"+st2.substring(2,6));//substring allows you to put starting and ending points in a string
+st3="ABCDEF";
+System.out.print("\nAfter converting ABCDEF to Lowercase \t"+st3.toLowerCase());//Lowercase conversion ..Uppercase is similar
+
+}
+}
