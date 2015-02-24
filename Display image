@@ -11,7 +11,7 @@ public class ShowImage extends JPanel{
    // Load an image file into our Image object. 
    // This file has to be in your project folder or along with your class file
 
-   image = Toolkit.getDefaultToolkit().getImage("Duke_Blocks.gif");
+   image = Toolkit.getDefaultToolkit().getImage("Cover.jpg");
   }
 
 // The following methods are instance methods.
