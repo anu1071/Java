@@ -9,8 +9,8 @@ public class ShowImage extends JPanel{
   public ShowImage(){
    super();
    // Load an image file into our Image object. 
-   // This file has to be in the same
-   // directory as ShowImage.class.
+   // This file has to be in your project folder .
+
    image = Toolkit.getDefaultToolkit().getImage("Duke_Blocks.gif");
   }
 
