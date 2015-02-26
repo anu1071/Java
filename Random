@@ -1,0 +1,32 @@
+
+import java.util.*;
+import java.io.*;
+import java.net.InetAddress;//for IP address
+ 
+class opener {
+  public static void main(String[] args)throws Exception
+  {
+    Runtime ob = Runtime.getRuntime();
+    /*----------------------IP Address-------------------------------------------*/
+    System.out.println(InetAddress.getLocalHost());//prints IP address
+    /*----------------------Garbage Collection-----------------------------------*/
+    System.out.println("Free memory before Garbage Collection = "+ob.freeMemory());
+    ob.gc();//Garbage collection 
+    System.out.println("Free memory after Garbage Collection = "+ob.freeMemory());
+ /*--------------------------Notepad---------------------------------------------*/
+    try {
+      ob.exec("notepad");//open notepad
+    }
+    catch (IOException error) {
+      System.out.println(error);
+    }   
+  /*----------------------------Random numbers-----------------------------------*/
+  Random ob2 =  new Random();
+  int i;
+  for(i=0;i<=20;i++)
+  {
+	System.out.println(ob2.nextInt(200));//random numbers ranging from 0 to 200 will be generated
+  }
+  
+  }
+}
