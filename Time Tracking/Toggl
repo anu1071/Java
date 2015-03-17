@@ -1,0 +1,138 @@
+import java.util.*;
+import java.awt.*;
+import javax.swing.*;
+public class Toggl extends JPanel 
+{
+public static long start_time[]=new long[100],stop_time[]=new long[100],duration[]=new long[100],non_billable=0,billable=0;
+public static boolean conti=false;
+public static int start=0;
+public static String[]activity=new String[100];
+public static String[]time=new String[100];
+public static int i=0;
+Image pic,pic2;
+
+void input_activities()
+{
+	while(conti=true)
+{
+	  Date dateob = new Date();
+	  Scanner inputob = new Scanner(System.in);
+	  System.out.println("What are you doing right now ???");
+	  /*playing 
+	    nothing
+	    sleeping
+	    are considered as non billable activities*/
+	  
+	  time[i]=dateob.toString();
+	  activity[i] = inputob.nextLine();
+	  start_time[i]=System.currentTimeMillis();
+	  System.out.println("You are currently \t"+activity[i]);
+	  System.out.println("Want to enter another activity ???\n'true' for yes\n'false' for no");
+	  
+	  //exception handling
+	  try
+	  {
+	  conti=inputob.nextBoolean();
+	  }
+	  catch(Exception e)
+	  {
+	  System.out.println("You have entered a value other than true or false");
+	  classification();
+	  continue;
+	  }
+	  //exception handling
+	  
+	     if(conti==false)
+         {
+	     classification();
+	     break;
+         }
+	    classification();
+	     i++;    	  
+} 
+}//input_activities
+
+
+
+
+void display_activities()
+{
+System.out.println("Here are your recorded activities");
+for(i=0;i<=100 && activity[i]!=null;i++)
+{
+System.out.println(i+".From "+time[i]+" onwards you were "+activity[i]+"\nfor "+duration[i]+"seconds");
+}
+System.out.println("You spent "+billable+" seconds on billable activities\nand you spent "+non_billable+" seconds on non billable activities");
+}//display_activities	
+
+
+void classification()
+{
+stop_time[i]=System.currentTimeMillis();
+duration[i]=(stop_time[i]-start_time[i])/1000;  
+if(activity[i].equals("playing") || activity[i].equals("nothing") || activity[i].equals("sleeping"))
+{
+non_billable=non_billable+duration[i];
+}
+else 
+{
+billable=billable+duration[i];
+}
+}//classification
+
+
+public Toggl()
+{
+super();//invoke parent class constructor ie JPanel's constructor
+pic= Toolkit.getDefaultToolkit().getImage("good job.jpg");
+pic2=Toolkit.getDefaultToolkit().getImage("bad job.png");
+}
+
+public void paintComponent(Graphics g)
+{
+       if(billable>=non_billable)
+       {
+    	   // Draw our Image object.
+	   g.drawImage(pic,0,0,512,512, this); // at location 0,0
+	    // 512 wide and high
+	   }
+       else
+       {
+        g.drawImage(pic2, 0, 0, 320,320,this);
+       }
+}
+
+public static void main(String[]args)
+{
+Scanner inputob = new Scanner(System.in);
+Toggl ob = new Toggl();
+System.out.println("Welcome to tracking app");
+System.out.println("Do you want to start tracking ?? \nEnter 1 to start .. else enter 0 to exit");
+start = inputob.nextInt();
+if(start==1)
+{
+ob.input_activities();
+}
+else
+{
+System.exit(0);
+}
+
+ob.display_activities();
+JFrame frame = new JFrame("Result");
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+if(billable>=non_billable)
+{
+frame.setSize(512,512);
+}
+else
+{
+frame.setSize(320,320);
+}
+Toggl panel = new Toggl();
+frame.setContentPane(panel); 
+frame.setVisible(true); 
+}//main
+
+
+}//class
